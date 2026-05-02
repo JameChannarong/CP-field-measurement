@@ -1,0 +1,267 @@
+================================================================
+CP FIELD MEASUREMENT TRAINING — INTERACTIVE WEBSITE
+Resume Plan for Claude
+================================================================
+Project folder : D:\OneDrive - PTTPLC\Desktop\CP training PTTEPI\cp-field-measurement-training\
+Source PPTX    : D:\OneDrive - PTTPLC\Desktop\CP training PTTEPI\field measurement.pptx
+Extracted XML  : D:\OneDrive - PTTPLC\Desktop\CP training PTTEPI\pptx_temp\ppt\slides\
+Slide text     : D:\OneDrive - PTTPLC\Desktop\CP training PTTEPI\slides_content.txt
+
+================================================================
+TECH STACK
+================================================================
+- Pure HTML / CSS / JavaScript  (no build tools, opens in browser)
+- Apple iOS glass morphism theme (backdrop-filter blur, rgba whites)
+- Ambient orb background, frosted glass cards
+- SVG + Canvas animations, CSS keyframes
+- Single-page app with tab navigation (7 tabs)
+
+File structure:
+  index.html          ← All HTML for all 7 sections
+  css/main.css        ← Glass theme + section styles (append per section)
+  css/animations.css  ← All animation keyframes
+  js/main.js          ← All JS (append per section)
+
+================================================================
+COMPLETED SECTIONS
+================================================================
+
+SECTION 1 — Reference Electrodes  ✅ DONE
+  Tab: "🔋 Reference Electrodes"  |  id="ref-electrodes"
+  Cards:
+    - Hero card with animated glyph
+    - Structure-to-electrolyte potential SVG diagram
+    - Interactive Electrode Explorer:
+        5 electrode cards (CSE, Ag/AgCl, Calomel, SHE, Zinc)
+        SVG potential scale –1.2V to +0.1V with pulsing ring
+        Details panel (updates on click)
+    - Electrode Positioning Demo:
+        Slider moves reference electrode away from buried pipe
+        Accuracy badge degrades: Excellent → Acceptable → Poor → Inaccurate
+        IR error lines appear as distance increases
+        3 structure types: Buried Pipeline / Marine / Storage Tank
+    - Placement Rules (3 cards)
+    - Key Takeaways (4 items)
+    - Knowledge Check Quiz (3 Q, with retry)
+
+SECTION 2 — Survey Methods  ✅ DONE
+  Tab: "📡 Survey Methods"  |  id="survey-methods"
+  Cards:
+    - Hero card
+    - CIPS card:
+        Equipment grid (6 items)
+        CIPS Walk Simulation (9-second animated walk):
+          - Surveyor SVG walks left→right
+          - Canvas chart draws ON (blue) + OFF (green) potential in real time
+          - Two coating holidays revealed as surveyor passes (cx=266 and cx=462)
+          - Red highlights on chart where OFF > –850 mV (unprotected)
+          - Play / Pause / Resume / Replay / Reset controls
+        CIPS interpretation cards (Protected / Marginal / Unprotected)
+    - DCVG card:
+        Info pills (3 items)
+        DCVG Holiday Detector (slider):
+          - Two DCVG probes (A, B) move together along pipeline
+          - Gaussian peak signal: holiday #1 at pct≈32% (~87 mV large), holiday #2 at pct≈69% (~46 mV medium)
+          - Holiday glow + current-flow arrows appear/disappear by alpha
+          - Intensity gradient bar, colour-coded reading, live caption
+        DCVG interpretation cards (Low/Medium/High gradient)
+    - Anode location effect card (instant-off rule)
+    - Key Takeaways (4 items)
+    - Knowledge Check Quiz (3 Q, uses shared buildQuiz() function)
+
+================================================================
+REMAINING SECTIONS — TO DO
+================================================================
+
+SECTION 3 — IR Drop  ⬜ TODO
+  Tab: "⚡ IR Drop"  |  id="ir-drop"
+  PPTX slides: 12, 39, 40, 41, 42
+  Key content:
+    - What is IR Drop: V = I × R (soil resistance causes voltage error)
+    - IR drop causes ON potential to read more negative than true pipe potential
+    - Cure: instant-off technique (interrupt current, read immediately)
+  Planned animations:
+    1. IR Drop Visualiser:
+         Pipeline cross-section SVG
+         Slider for "IR drop magnitude" (soil resistance or current level)
+         Shows ON potential, IR error component, and true OFF potential
+         Three-bar decomposition: [ON] = [OFF] + [IR error]
+         Colour zones: green (true protection), orange (IR error), red (if still unprotected)
+    2. Instant-Off Technique Simulator:
+         Timeline graph showing potential vs. time
+         Current interrupter toggles ON/OFF
+         "ON" reading shown, then instant-off spike, then settling to polarised potential
+         Animated waveform drawn in real time or step-by-step
+  Quiz: 3 questions
+
+SECTION 4 — Current Measurement  ⬜ TODO
+  Tab: "🔌 Current Measurement"  |  id="current-meas"
+  PPTX slides: 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 44, 45, 46, 47, 48, 49
+  Key content:
+    - Methods: Multimeter/Ammeter, Clamp Ammeter, Shunt
+    - Safety: Ammeter must be in series (circuit disconnected)
+    - Shunt: measure voltage drop, use Ohm's Law (I = V/R)
+      Example 1: Shunt-010, 50mV drop → I = 0.05/0.10 = 0.5 A
+      Example 2: Shunt-15A/50mV, 28mV drop → I = (28/50)×15 = 8.4 A
+    - Current direction (pipeline current, galvanic anode, rectifier)
+    - 2-Wire method: pipe span resistance, voltage drop → current
+      Example: 200ft span, 0.17mV drop, R=4.88×10⁻⁶ Ω → I=348mA (West to East)
+    - 4-Wire method: calibration factor approach
+      Example: Test current 10A, ON-OFF = 4.91mV → factor 2.04 A/mV, 0.17mV span → 347mA (East to West)
+  Planned animations:
+    1. Interactive Shunt Calculator:
+         Dropdown: select shunt type (e.g. 1A/50mV, 10A/50mV, 15A/50mV, custom)
+         Input: measured voltage drop (mV)
+         Animated Ohm's Law calculation showing I = V/R step by step
+         Result displayed with unit and direction indicator
+    2. 2-Wire vs 4-Wire Test Station Comparison:
+         Side-by-side SVG diagrams
+         2-wire: shows 2 test leads, pipe span, voltage measurement
+         4-wire: shows 4 test leads, calibration current path
+         Toggle between the two to highlight differences
+    3. Current Direction Indicator:
+         Pipeline segment SVG
+         Animated current flow arrows (direction reverses based on + / – sign)
+  Quiz: 3 questions
+
+SECTION 5 — Resistance Measurement  ⬜ TODO
+  Tab: "🔧 Resistance"  |  id="resistance"
+  PPTX slides: 23, 24, 25, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59
+  Key content:
+    - Types: across isolating fittings, casing-to-pipe, structure continuity,
+             structure-to-anode, structure-to-earth
+    - Ohmmeter: measures resistance by applying internal current/voltage
+    - Ohmmeter error: parallel resistance of soil can cause inaccurate readings
+      (especially for casing-to-pipe tests)
+    - Electrical Continuity: all metal must be bonded; cases requiring bonding
+      (couplings, screw joints, flanges, rebar, piling groups)
+    - Electrical Isolation: flanges, couplings, monolithic joints, swivels
+    - Isolation fitting testing: P/S potential difference >100mV = still functional
+    - Casing testing: On/Off potential method
+    - Accidental contacts: copper water pipe touching steel gas pipe causes short
+    - Alternative methods: fixed cell / moving ground method
+    - Diode Bias: forward ~0.3–0.9V, reverse = OL (overload)
+      Short-circuit failure: shows voltage in BOTH directions
+      Open-circuit failure: OL in BOTH directions
+  Planned animations:
+    1. Ohmmeter Error Demo:
+         SVG showing pipe isolated fitting + soil
+         Show "measured R" vs "true R" when soil provides parallel path
+         Slider for soil resistance → error meter updates
+    2. Isolation Fitting Tester:
+         SVG pipeline with isolating flange in the middle
+         Two reference electrode positions (one each side)
+         Show P/S potential difference
+         Slider: degrade fitting → difference drops from >100mV to <100mV
+         Status: Functional / Suspect / Shorted
+    3. Diode Test Simulator:
+         Three diode states: Normal / Short-circuit / Open-circuit
+         Toggle between states
+         Multimeter display shows forward and reverse readings for each
+  Quiz: 3 questions
+
+SECTION 6 — Soil Resistivity  ⬜ TODO
+  Tab: "🌍 Soil Resistivity"  |  id="soil-resistivity"
+  PPTX slides: 26, 27, 28, 29, 60, 61, 62, 63, 64, 65, 66, 67, 68
+  Key content:
+    - Methods: Wenner 4-pin (most common), Soil Box, 2-pin, single probe
+    - Wenner formula: ρ = 2πaR  (a in cm)  or  ρ = 191.5 × a × R  (a in feet)
+    - Average vs layer resistivity
+    - Probe placement: avoid underground metal structures (lowers reading)
+    - Effects of soil layers (top layer vs deep layer)
+    - Factors: soil type, water content, temperature
+    - Soil box method: lab measurement of soil sample
+  Planned animations:
+    1. Wenner 4-Pin Simulator:
+         SVG top-view and cross-section of ground
+         4 pins shown as vertical rods
+         Slider: pin spacing "a" (10 cm to 5 m)
+         Input: measured resistance R (Ω)
+         Live formula: ρ = 2πaR → calculated result in Ω·cm
+         Cross-section depth ring shows effective measurement depth ≈ "a"
+    2. Soil Layer Effect:
+         Cross-section SVG with 2 distinct soil layers (different colours)
+         Slider for top layer thickness
+         Pin spacing slider
+         Shows how shallow vs deep pin spacing gives different readings
+         (shallow = top layer only; deep = average of both layers)
+    3. Soil Resistivity Factors Chart:
+         Three tabs: Soil Type / Water Content / Temperature
+         Bar charts or curve graphs for each factor
+         Interactive: hover or click bar to see resistivity value and corrosion risk
+  Quiz: 3 questions
+
+SECTION 7 — Special Equipment  ⬜ TODO
+  Tab: "🛠️ Special Equipment"  |  id="special-equip"
+  PPTX slides: 30, 31, 32, 33, 34, 35, 36, 37
+  Key content:
+    - Pipe/Cable Locators:
+        Conductive (electrical conduction): signal injected onto pipe, receiver detects
+        Inductive (electromagnetic): transmitter induces signal, no direct connection
+        Combination (hybrid)
+    - Current Interrupter:
+        Switch opens/closes circuit at timed intervals
+        Used for: ON/OFF potential measurement, bonding evaluation, casing-to-pipe testing
+    - Coupon Measurements:
+        Same material as pipe, electrically connected at above-ground point
+        Used to measure: coupon-to-electrolyte potential, current pick-up/discharge,
+        corrosion rate (weight loss)
+        Coupon test stations
+  Planned animations:
+    1. Pipe Locator Types Comparison:
+         Side-by-side cards: Conductive vs Inductive
+         SVG showing how each method works (signal path)
+         Toggle animation: conductive (direct connection wire) vs inductive (radio signal arc)
+    2. Current Interrupter Timeline:
+         Animated timeline showing ON / OFF cycles
+         Overlaid potential waveform (like an oscilloscope)
+         Adjustable cycle time (e.g. 3s ON / 1s OFF)
+         Labels: "ON reading", "instant-off", "polarised potential", "depolarisation"
+    3. Coupon Station Explorer:
+         SVG cross-section: buried pipe + coupon nearby
+         Labels: coupon body, lead wire, test station box, disconnect switch
+         Interactive: toggle coupon connected/disconnected
+         Show how the coupon "intercepts" CP current and gives you a measurable value
+  Quiz: 3 questions
+
+================================================================
+CODING CONVENTIONS
+================================================================
+- Each section: append HTML into index.html (replace placeholder <section>)
+- Each section: append CSS block to css/main.css (before last @media rule)
+- Each section: append JS block to js/main.js (at end of file)
+- Section IDs: ref-electrodes, survey-methods, ir-drop, current-meas,
+               resistance, soil-resistivity, special-equip
+- Quiz container IDs: quizContainer (S1), quizS2 (S2), quizS3...quizS7
+- Shared quiz builder: buildQuiz(containerId, questions[], sectionLabel)
+  → already defined in main.js, use for S3–S7
+- Slider CSS: ios-slider class with --fill CSS variable for track fill colour
+- Glass card: class="glass-card"
+- Glass inset (demo box): class="glass-inset"
+- Demo controls: class="demo-header" > .demo-title + .demo-controls > .ctrl-btn.primary
+- Interpretation cards: class="interp-cards" > .interp-card.ok / .warn / .bad
+- Takeaways: class="takeaways-list" > .takeaway > .takeaway-num + div
+
+================================================================
+iOS GLASS THEME VARIABLES (defined in css/main.css :root)
+================================================================
+--blue:    #007AFF     (primary interactive)
+--green:   #34C759     (success / protected)
+--orange:  #FF9500     (warning / caution)
+--red:     #FF3B30     (error / unprotected)
+--purple:  #AF52DE
+--teal:    #5AC8FA
+--gray:    #8E8E93
+--text1:   #1C1C1E     (primary text)
+--text2:   #3C3C43     (secondary text)
+--text3:   #8E8E93     (hint / placeholder)
+--glass-bg:     rgba(255,255,255,0.68)
+--glass-border: rgba(255,255,255,0.85)
+--blur:         blur(24px) saturate(180%)
+--radius:    20px
+--radius-sm: 12px
+--radius-xs: 8px
+
+================================================================
+END OF PLAN
+================================================================

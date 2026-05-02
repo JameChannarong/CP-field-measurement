@@ -1,0 +1,103 @@
+/* ============================================================
+   ANIMATIONS — CP Field Measurement Training
+   ============================================================ */
+
+/* ── Fade + Slide Up ── */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Pop In (elastic) ── */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Orb Float ── */
+@keyframes floatOrb {
+  0%,100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -40px) scale(1.05); }
+  66%      { transform: translate(-20px, 20px) scale(.95); }
+}
+
+/* ── Shake X (wrong answer) ── */
+@keyframes shakeX {
+  0%,100% { transform: translateX(0); }
+  15%     { transform: translateX(-8px); }
+  30%     { transform: translateX(8px); }
+  45%     { transform: translateX(-6px); }
+  60%     { transform: translateX(6px); }
+  75%     { transform: translateX(-3px); }
+  90%     { transform: translateX(3px); }
+}
+
+/* ── Scale Marker Ring Pulse ── */
+@keyframes ringPulse {
+  0%,100% { opacity: .6; r: 16; }
+  50%      { opacity: .15; r: 22; }
+}
+
+/* ── Electrode selected border animation ── */
+@keyframes borderGlow {
+  0%,100% { box-shadow: 0 0 0 3px rgba(0,122,255,.15), 0 8px 24px rgba(0,122,255,.12); }
+  50%      { box-shadow: 0 0 0 5px rgba(0,122,255,.22), 0 8px 24px rgba(0,122,255,.18); }
+}
+.elec-card.selected { animation: borderGlow 2.5s ease-in-out infinite; }
+
+/* ── Floating label ── */
+@keyframes floatLabel {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+.hero-glyph { animation: floatLabel 3s ease-in-out infinite; }
+
+/* ── IR line draw ── */
+@keyframes drawLine {
+  from { stroke-dashoffset: 200; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ── Accuracy bar fill ── */
+@keyframes fillBar {
+  from { width: 0; }
+}
+
+/* ── Tab active indicator slide ── */
+@keyframes slideIn {
+  from { opacity:0; transform: scaleX(.8); }
+  to   { opacity:1; transform: scaleX(1); }
+}
+
+/* ── Scale marker transition ── */
+.scale-marker { transition: opacity .35s, transform .35s; }
+.scale-marker.dimmed { opacity: .25; }
+
+/* ── Detail panel ── */
+.detail-panel { animation: fadeSlideIn .3s ease both; }
+
+/* ── Score reveal ── */
+@keyframes countUp {
+  from { opacity: 0; transform: scale(.5) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.score-num { animation: countUp .5s cubic-bezier(.34,1.56,.64,1) both; }
+
+/* ── Slider track fill indicator ── */
+.ios-slider {
+  transition: background .2s;
+}
+
+/* ── Position SVG electrode bounce ── */
+@keyframes elecBounce {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+#refElecGroup { animation: elecBounce 2.2s ease-in-out infinite; }
+
+/* ── Stagger children ── */
+.electrode-grid .elec-card:nth-child(1) { animation-delay: 0s; }
+.electrode-grid .elec-card:nth-child(2) { animation-delay: .06s; }
+.electrode-grid .elec-card:nth-child(3) { animation-delay: .12s; }
+.electrode-grid .elec-card:nth-child(4) { animation-delay: .18s; }
+.electrode-grid .elec-card:nth-child(5) { animation-delay: .24s; }
